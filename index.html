@@ -8,8 +8,122 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        /* Alto Contraste */
+        body.high-contrast {
+            background-color: #808080 !important;
+            color: #000 !important;
+        }
+        body.high-contrast .bg-card {
+            background-color: #c0c0c0 !important;
+        }
+        body.high-contrast .bg-white {
+            background-color: #c0c0c0 !important;
+            color: #000 !important;
+        }
+        body.high-contrast .bg-slate-100 {
+            background-color: #808080 !important;
+        }
+        body.high-contrast .bg-slate-50,
+        body.high-contrast .bg-blue-50,
+        body.high-contrast .bg-emerald-50,
+        body.high-contrast .bg-red-100,
+        body.high-contrast .bg-amber-50,
+        body.high-contrast .bg-purple-50 {
+            background-color: #a9a9a9 !important;
+        }
+        body.high-contrast .text-slate-700,
+        body.high-contrast .text-slate-800,
+        body.high-contrast .text-slate-600,
+        body.high-contrast .text-muted {
+            color: #000 !important;
+        }
+        body.high-contrast .border-slate-200 {
+            border-color: #000 !important;
+        }
+        body.high-contrast .bg-amber-500 {
+            background-color: #ffa500 !important;
+            color: #000 !important;
+        }
+        body.high-contrast button {
+            border: 2px solid #000 !important;
+        }
+    </style>
     </head>
     <body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between" id="app-body">
+
+    <!-- MODAL DE BOAS-VINDAS -->
+    <div id="modal-boas-vindas" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000] p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-96 overflow-y-auto animate-fadeIn">
+            <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white p-6 sm:p-8">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="fa-solid fa-shield-halved text-4xl text-amber-400"></i>
+                    <h2 class="text-3xl sm:text-4xl font-bold">Bem-vindo ao Digital Seguro!</h2>
+                </div>
+                <p class="text-blue-100 text-lg">O seu guia completo de segurança na internet</p>
+            </div>
+            
+            <div class="p-6 sm:p-8 space-y-6">
+                <div>
+                    <h3 class="text-2xl font-bold text-blue-900 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-info-circle text-blue-600"></i> O que é este site?
+                    </h3>
+                    <p class="text-slate-700 leading-relaxed text-lg">
+                        Digital Seguro é um site criado para ajudar pessoas a protegerem-se de burlas e fraudes online. 
+                        Aprenda as principais regras de segurança, pratique com simulações e saiba o que fazer em caso de emergência.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-emerald-900 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-star text-emerald-600"></i> Principais Funcionalidades
+                    </h3>
+                    <ul class="space-y-3 text-slate-700">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-lightbulb text-amber-500 text-xl mt-1 flex-shrink-0"></i>
+                            <span class="text-lg"><strong>Dicas Úteis:</strong> Aprenda sobre segurança em WhatsApp, senhas, links suspeitos e transferências bancárias.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-gamepad text-emerald-600 text-xl mt-1 flex-shrink-0"></i>
+                            <span class="text-lg"><strong>Treino Prático:</strong> Teste os seus conhecimentos com um jogo que simula mensagens reais de burlas.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-triangle-exclamation text-red-600 text-xl mt-1 flex-shrink-0"></i>
+                            <span class="text-lg"><strong>Caiu num Golpe?:</strong> Instruções imediatas do que fazer se foi vítima de uma burla.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-volume-high text-purple-600 text-xl mt-1 flex-shrink-0"></i>
+                            <span class="text-lg"><strong>Ouvir Guia:</strong> Todas as funcionalidades têm som para melhor acessibilidade.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-lg">
+                    <p class="text-slate-800 font-semibold text-lg">
+                        <i class="fa-solid fa-thumbs-up text-blue-600 mr-2"></i>
+                        Use os botões acima para aumentar o texto, diminuir ou ativar o contraste para melhor leitura!
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-6 sm:p-8 border-t border-slate-200 flex gap-3">
+                <button onclick="fecharModalBoasVindas()" class="flex-1 bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-xl text-lg transition-colors">
+                    <i class="fa-solid fa-arrow-right mr-2"></i>Começar Agora
+                </button>
+                <button onclick="lerModalBoasVindas()" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-xl text-lg transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-volume-high"></i>Ouvir
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- BARRA SUPERIOR DE ACESSIBILIDADE -->
     <header class="bg-blue-900 text-white p-4 shadow-md sticky top-0 z-50">

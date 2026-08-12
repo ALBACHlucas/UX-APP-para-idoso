@@ -65,8 +65,10 @@
             
             if (modoAltoContraste) {
                 body.classList.add('high-contrast');
+                localStorage.setItem('modoAltoContraste', 'true');
             } else {
                 body.classList.remove('high-contrast');
+                localStorage.setItem('modoAltoContraste', 'false');
             }
         }
 
@@ -159,8 +161,33 @@
             location.reload();
         }
 
+        // Fechar Modal de Boas-vindas
+        function fecharModalBoasVindas() {
+            const modal = document.getElementById('modal-boas-vindas');
+            modal.classList.add('hidden');
+            localStorage.setItem('modalBoasVindasVisto', 'true');
+        }
+
+        // Ler Modal de Boas-vindas em Voz Alta
+        function lerModalBoasVindas() {
+            const texto = "Bem-vindo ao Digital Seguro. Este é um guia completo de segurança na internet. Aqui você encontrará dicas úteis sobre WhatsApp, senhas e segurança em transferências. Pode praticar com um jogo de simulação de burlas. Se cair em um golpe, temos instruções de emergência. Todas as funcionalidades têm som para melhor acessibilidade.";
+            lerTexto(texto);
+        }
+
         // Inicialização
         window.onload = function() {
             document.body.style.fontSize = `${tamanhoFonteAtual}px`;
+            
+            // Mostrar modal apenas na primeira visita
+            if (!localStorage.getItem('modalBoasVindasVisto')) {
+                document.getElementById('modal-boas-vindas').classList.remove('hidden');
+            } else {
+                document.getElementById('modal-boas-vindas').classList.add('hidden');
+            }
+            
+            // Restaurar modo alto contraste se estava ativo
+            if (localStorage.getItem('modoAltoContraste') === 'true') {
+                alternarAltoContraste();
+            }
         };
     
